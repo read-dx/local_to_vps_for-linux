@@ -1,0 +1,60 @@
+2022-12-05 14:37:33,200:__main__:INFO:===START FTP===
+2022-12-05 14:37:33,200:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 14:37:33,293:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 14:37:33,293:__main__:INFO:===FINISH FTP===
+2022-12-05 14:38:06,590:__main__:INFO:===START FTP===
+2022-12-05 14:38:06,590:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 14:38:06,763:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 14:38:06,764:__main__:INFO:===FINISH FTP===
+2022-12-05 14:44:30,202:__main__:INFO:===START FTP===
+2022-12-05 14:44:30,202:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 14:44:30,352:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 14:44:30,352:__main__:INFO:===FINISH FTP===
+2022-12-05 14:50:56,216:__main__:INFO:===START FTP===
+2022-12-05 14:50:56,216:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 14:50:56,289:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 14:50:56,290:__main__:INFO:===FINISH FTP===
+2022-12-05 14:57:25,656:__main__:INFO:===START FTP===
+2022-12-05 14:57:25,656:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 14:57:25,759:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 14:57:25,759:__main__:INFO:===FINISH FTP===
+2022-12-05 15:03:45,772:__main__:INFO:===START FTP===
+2022-12-05 15:03:45,772:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 15:03:45,890:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 15:03:45,890:__main__:INFO:===FINISH FTP===
+2022-12-05 15:10:09,674:__main__:INFO:===START FTP===
+2022-12-05 15:10:09,674:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 15:10:09,970:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 15:10:09,970:__main__:INFO:===FINISH FTP===
+2022-12-05 18:02:51,740:__main__:INFO:===START FTP===
+2022-12-05 18:02:51,741:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:02:51,913:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:02:51,913:__main__:INFO:===FINISH FTP===
+2022-12-05 18:07:34,774:__main__:INFO:===START FTP===
+2022-12-05 18:07:34,774:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:07:34,860:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:07:34,860:__main__:INFO:===FINISH FTP===
+2022-12-05 18:08:06,089:__main__:INFO:===START FTP===
+2022-12-05 18:08:06,089:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:08:06,207:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:08:06,207:__main__:INFO:===FINISH FTP===
+2022-12-05 18:14:20,998:__main__:INFO:===START FTP===
+2022-12-05 18:14:20,998:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:14:21,062:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:14:21,062:__main__:INFO:===FINISH FTP===
+2022-12-05 18:20:25,082:__main__:INFO:===START FTP===
+2022-12-05 18:20:25,082:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:20:25,125:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:20:25,125:__main__:INFO:===FINISH FTP===
+2022-12-05 18:26:31,849:__main__:INFO:===START FTP===
+2022-12-05 18:26:31,849:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:26:31,928:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:26:31,928:__main__:INFO:===FINISH FTP===
+2022-12-05 18:32:39,821:__main__:INFO:===START FTP===
+2022-12-05 18:32:39,822:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:32:39,878:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:32:39,878:__main__:INFO:===FINISH FTP===
+2022-12-05 18:38:51,495:__main__:INFO:===START FTP===
+2022-12-05 18:38:51,495:__main__:INFO:{'action': 'ftp_upload', 'status': 'run'}
+2022-12-05 18:38:51,559:__main__:INFO:{'action': 'ftp_upload', 'status': 'success'}
+2022-12-05 18:38:51,559:__main__:INFO:===FINISH FTP===

@@ -5,6 +5,7 @@ import math
 import time
 import os
 import warnings
+import datetime
 
 #エラー無視
 warnings.simplefilter('ignore')
@@ -43,12 +44,6 @@ if os.path.exists('SUMCO/sumco.csv'):
     l_list_s =pd.read_csv('SUMCO/sumco.csv', encoding='SHIFT-JIS')
 else:
     pass
-
-
-
-
-
-
 
 #出荷Lot用のクエリ作成
 for x in range(len(l_list_s['KEY2'])):
@@ -201,4 +196,3 @@ for x in range(len(l_list_s['KEY2'])):
     os.remove('SUMCO/'+l_list_s['KEY2'][x]+'/'+str(l_list_s['KEY2'][x]) + '.csv')
 
 print('finish!')
-os.remove('SUMCO/sumco.csv')

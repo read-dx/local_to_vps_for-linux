@@ -6,16 +6,8 @@ import os
 import time
 import shutil
 import subprocess as sp
-import ftplib
 
 warnings.simplefilter('ignore')
-
-#ftp接続
-ftp = ftplib.FTP('IP ADRESS')
-ftp.set_pasv('true')
-ftp.login('USER','PASSWORD')
-ftp.close() #最後につける
-
 
 #10.100.1.112
 server1 = "10.100.1.112"
@@ -40,7 +32,7 @@ password3 = "p@$$w0rd"
 conn3 = pyd.connect(server=server3, user=username3, password=password3, database=database3)
 
 # (10.106.1.240)
-server4 = "10.106.1.239"
+server4 = "10.106.1.240"
 database4 = "ROWDB"
 username4 = "sa"
 password4 = "p@$$w0rd"
@@ -51,7 +43,7 @@ df = pd.read_csv('update_id.csv', encoding='SHIFT-JIS')
 dfid =df.iloc[0,0] #get ID
 
 c_name_m = '%三益%'
-s_list_m = 'SELECT sou.KEY1,sou.KEY2 FROM 生産管理システム.dbo.T操作履歴 as sou INNER JOIN 生産管理システム.dbo.指令票_ROW_巻換え  as maki on sou.KEY1  = maki.ID WHERE 最終客先名 LIKE '+"'" + c_name_m +"'"+ ' AND sou.id >' +"'" + str(dfid) + "'"
+s_list_m = 'SELECT DISTINCT sou.KEY1,sou.KEY2, maki.納品距離/1000 as "納品距離" FROM 生産管理システム.dbo.T操作履歴 as sou INNER JOIN 生産管理システム.dbo.指令票_ROW_巻換え  as maki on sou.KEY1  = maki.ID WHERE 最終客先名 LIKE '+"'" + c_name_m +"'"+ ' AND sou.id >' +"'" + str(dfid) + "'"
 s_list_m = pd.read_sql(
                 s_list_m
                 ,conn1
@@ -63,7 +55,7 @@ else: pass
 
 #更新回数(SUMCO)
 c_name_s = '%SUMCO%'
-s_list_s = 'SELECT sou.KEY1,sou.KEY2  FROM 生産管理システム.dbo.T操作履歴 as sou INNER JOIN 生産管理システム.dbo.指令票_ROW_巻換え  as maki on sou.KEY1  = maki.ID WHERE 最終客先名 LIKE '+"'" + c_name_s +"'"+ ' AND sou.id >' +"'" + str(dfid) + "'"
+s_list_s = 'SELECT DISTINCT sou.KEY1,sou.KEY2,maki.納品距離/1000 as "納品距離"  FROM 生産管理システム.dbo.T操作履歴 as sou INNER JOIN 生産管理システム.dbo.指令票_ROW_巻換え  as maki on sou.KEY1  = maki.ID WHERE 最終客先名 LIKE '+"'" + c_name_s +"'"+ ' AND sou.id >' +"'" + str(dfid) + "'"
 s_list_s = pd.read_sql(
                 s_list_s
                 ,conn1
@@ -111,6 +103,7 @@ if os.path.exists('sumco.csv'):
         shutil.move('sumco.csv', 'SUMCO/sumco.csv')
         time.sleep(2)
         sp.run(['python3', 'SUMCO/getdata_s.py'])
+        time.sleep(2)
     except Exception:
         pass
     

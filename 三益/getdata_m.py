@@ -5,6 +5,10 @@ import time
 import os
 import warnings
 import pymssql as pyd
+import datetime
+import shutil
+import ftplib
+import logging
 
 #エラー無視
 warnings.simplefilter('ignore')
@@ -133,7 +137,7 @@ for x in range(len(l_list_m['KEY2'])):
                     ,conn4
                     )
         df2 = df2.loc[:,['ﾒｯｷ後カメラ1ダイヤ個数','ﾒｯｷ後カメラ2ダイヤ個数','ﾒｯｷ後カメラ3ダイヤ個数','ﾒｯｷ後カメラ1_3平均個数']]
-        df2.to_csv('三益/'+str(l_list_m['KEY2'][x]+'/'+l_list_m['KEY2'][x])+'_個数.csv',encoding='SHIFT-JIS',index=False,header=True)
+        df2.to_csv('三益/'+str(l_list_m['KEY2'][x])+'/'+'dia_count.csv',encoding='SHIFT-JIS',index=False,header=True)
     #239とつなぐ場合
     elif df0['DB接続名'].values =='ROWDB_R3_239':
         print('239')
@@ -142,7 +146,7 @@ for x in range(len(l_list_m['KEY2'])):
                     ,conn3
                     )
         df2 = df2.loc[:,['ﾒｯｷ後カメラ1ダイヤ個数','ﾒｯｷ後カメラ2ダイヤ個数','ﾒｯｷ後カメラ3ダイヤ個数','ﾒｯｷ後カメラ1_3平均個数']]
-        df2.to_csv('三益/'+str(l_list_m['KEY2'][x]+'/'+l_list_m['KEY2'][x])+'_個数.csv',encoding='SHIFT-JIS',index=False,header=True)
+        df2.to_csv('三益/'+str(l_list_m['KEY2'][x])+'/'+'dia_count.csv',encoding='SHIFT-JIS',index=False,header=True)
     else :
         print('no_data')
     #＿＿＿線径データ______
@@ -191,8 +195,60 @@ for x in range(len(l_list_m['KEY2'])):
     needs = pd.read_csv('三益/'+l_list_m['KEY2'][x]+'/'+str(l_list_m['KEY2'][x])+ '.csv', encoding = "SHIFT-JIS")
     needs.drop(columns = ['Unnamed: 0'], inplace=True)
     needs.columns =['ID','履歴ID','日時','線径μm']
-    needs.to_csv('三益/'+l_list_m['KEY2'][x]+'/'+str(l_list_m['KEY2'][x])+'_線径.csv', index=False, encoding = "SHIFT-JIS")
+    needs.to_csv('三益/'+l_list_m['KEY2'][x]+'/'+'diameter.csv', index=False, encoding = "SHIFT-JIS")
     os.remove('三益/'+l_list_m['KEY2'][x]+'/'+str(l_list_m['KEY2'][x]) + '.csv')
-
+    #zip圧縮
+    shutil.make_archive('三益/'+l_list_m['KEY2'][x]+'/'+str(l_list_m['KEY2'][x]), 'zip', root_dir='三益/'+str(l_list_m['KEY2'][x]))
+    
+    #FTP接続
+    def ftp_upload(hostname, username, password, port, upload_src_path, upload_dst_path, timeout):
+        logger.info({
+            'action': 'ftp_upload',
+            'status': 'run'
+        })
+        # FTP接続/アップロード
+        with ftplib.FTP() as ftp:
+            try:    
+                ftp.connect(host=hostname, port=port, timeout=timeout)
+                # パッシブモード設定
+                ftp.set_pasv("true")
+                # FTPサーバログイン
+                ftp.login(username, password)
+                with open(upload_src_path, 'rb') as fp:
+                    ftp.storbinary(upload_dst_path, fp)
+            except ftplib.all_errors as e:
+                logger.error({
+                    'action': 'ftp_upload',
+                    'message': 'FTP error = %s' % e
+                })
+        logger.info({
+            'action': 'ftp_upload',
+            'status': 'success'
+        })
+    # logの設定
+    logger = logging.getLogger(__name__)
+    formatter = '%(asctime)s:%(name)s:%(levelname)s:%(message)s'
+    logging.basicConfig(
+        filename='./ftp_logger.log',
+        level=logging.DEBUG,
+        format=formatter
+    )
+    logger.setLevel(logging.INFO)
+    # 接続先サーバーのホスト名
+    hostname = "10.100.12.105" 
+    # アップロードするファイルパス
+    upload_src_path = '三益/'+l_list_m['KEY2'][x]+'/'+str(l_list_m['KEY2'][x])+'.zip'
+    # アップロード先のファイルパス（STORはファイルをアップロードするためのFTPコマンドなので必要です。）
+    upload_dst_path = "STOR "+ str(l_list_m['KEY2'][x]) + '.zip'
+    # サーバーのユーザー名
+    username = "test01" 
+    # サーバーのログインパスワード
+    password = "test01" 
+    # FTPサーバポート
+    port = 21 
+    timeout = 50
+    logger.info("===START FTP===")
+    ftp_upload(hostname, username, password, port, upload_src_path, upload_dst_path, timeout)
+    logger.info("===FINISH FTP===")
+        
 print('finish!')
-os.remove('三益/'+'mimasu.csv')
