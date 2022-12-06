@@ -15,7 +15,6 @@ database1 = "master"
 username1 = "sa"
 password1 = "p@$$w0rd"
 conn1 =pyd.connect(server=server1, user=username1, password=password1, database=database1)
-    
 
 # 10.106.1.238
 server2 = "10.106.1.238"
